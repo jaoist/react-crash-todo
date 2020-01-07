@@ -15,7 +15,9 @@ export class TodoItem extends Component {
     return (
       <div style={this.getStyle()}>
         <p>
-          {this.props.todo.title}</p>
+          <input type="checkbox" /> {' '}
+          {this.props.todo.title}
+        </p>
       </div>
     );
   }
