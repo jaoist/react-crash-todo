@@ -18,19 +18,31 @@ class App extends Component {
       {
         id: 3,
         title: 'Meeting with boss',
-        completed: true
+        completed: false
       }
     ]
   }
-
-  markComplete = () => {
-    console.log('From App.js')
+  // Toggle complete
+  markComplete = (id) => {
+    this.setState({todos: this.state.todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })});
   }
+
+  // Delete Todo
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
+  } 
 
   render() {
     return (
       <div className="App">
-        <Todos todos={this.state.todos} markComplete={this.markComplete} /> {/*'todos' sets a property on the Todos object, as does markComplete */}
+        <Todos todos={this.state.todos} 
+          markComplete={this.markComplete}
+          delTodo={this.delTodo} /> {/*'todos' sets a property on the Todos object, as does markComplete */}
       </div>
     );
   }
